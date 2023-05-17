@@ -1,5 +1,27 @@
 <?php
 
+function generaPassword($lunghezza) {
+  $caratteri = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()';
+  $password = '';
+
+  for ($i = 0; $i < $lunghezza; $i++) {
+      $randomIndex = rand(0, strlen($caratteri) - 1);
+      $password .= $caratteri[$randomIndex];
+  }
+
+  return $password;
+}
+
+if (isset($_GET['lunghezza']) && $_GET['lunghezza'] != '') {
+  $lunghezza = $_GET['lunghezza'];
+  if ($lunghezza < 8) {
+      echo "<div class='container py-5'><h2>Errore:</h2><p>La password deve avere almeno 8 caratteri.</p></div>";
+  } else {
+      $password = generaPassword($lunghezza);
+      echo "<div class='container py-5'><h2>Password Generata:</h2><p>$password</p></div>";
+  }
+}
+?>
 
 ?>
 
@@ -13,7 +35,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Password Generator</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="container py-5">
