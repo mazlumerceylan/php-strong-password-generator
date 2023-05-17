@@ -2,17 +2,22 @@
 
 include 'function.php';
 
+session_start();
 
+
+// Se la richiesta GET contiene il campo 'lunghezza'...
 if (isset($_GET['lunghezza']) && $_GET['lunghezza'] != '') {
   $lunghezza = $_GET['lunghezza'];
+  // Se la lunghezza è minore di 8, mostra un messaggio di errore.
   if ($lunghezza < 8) {
       echo "<div class='container py-5'><h2>Errore:</h2><p>La password deve avere almeno 8 caratteri.</p></div>";
+    // Altrimenti, genera una password e reindirizza l'utente alla pagina della password.
   } else {
       $password = generaPassword($lunghezza);
-      echo "<div class='container py-5'><h2>Password Generata:</h2><p>$password</p></div>";
-  }
+      header('Location: password.php');
+    }
 }
-?>
+
 
 ?>
 
