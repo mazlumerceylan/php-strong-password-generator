@@ -27,6 +27,7 @@ unset($_SESSION['password']);
     <div class="container py-5">
         <h2>Password Generata:</h2>
         <p><?php echo $password; ?></p>
+        <a href="index.php" class="btn btn-primary">Genera un'altra password</a>
     </div>
 </body>
 
